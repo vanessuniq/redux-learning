@@ -27,12 +27,14 @@
                     case "like/increment":
                         return {...state, value: state.value + 1};
                     case "like/decrement":
-                        return {...state, value: state.value -1};
+                        if(state.value > 0) return {...state, value: state.value -1};
                     default:
+                        // If the reducer doesn't care about this action type,
+                        // return the existing state unchanged
                         return state;
                 }
             };
-            
+
         </script>
     </body>
 </html>
