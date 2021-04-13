@@ -18,6 +18,21 @@
             const initialState = {
                 value: 0
             };
+            // Create a "reducer" function that determines what the new state
+            // should be when something happens in the app
+            function likeReducer(state = initialState, action) {
+                // Reducers usually look at the type of action that happened
+                // to decide how to update the state
+                switch(action.type) {
+                    case "like/increment":
+                        return {...state, value: state.value + 1};
+                    case "like/decrement":
+                        return {...state, value: state.value -1};
+                    default:
+                        return state;
+                }
+            };
+            
         </script>
     </body>
 </html>
