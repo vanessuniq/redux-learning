@@ -55,7 +55,8 @@
         };
         // update the likes value with the current state
         render();
-
+        // Subscribe the UI to the store so that it rerenders only when the state changes
+        store.subscribe(render);
         // Handle user inputs by "dispatching" action objects,
         // which should describe "what happened" in the app
         document
@@ -64,7 +65,7 @@
                 store.dispatch({
                     type: "like/increment"
                 });
-                render();
+
             });
 
         document
@@ -73,7 +74,7 @@
                 store.dispatch({
                     type: "like/decrement"
                 });
-                render();
+
             });
     </script>
 </body>
