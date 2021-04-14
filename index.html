@@ -66,6 +66,15 @@
                 });
                 render();
             });
+
+        document
+            .getElementById("decrement")
+            .addEventListener("click", function() {
+                store.dispatch({
+                    type: "like/decrement"
+                });
+                render();
+            });
     </script>
 </body>
 
