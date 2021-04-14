@@ -55,6 +55,17 @@
         };
         // update the likes value with the current state
         render();
+
+        // Handle user inputs by "dispatching" action objects,
+        // which should describe "what happened" in the app
+        document
+            .getElementById("increment")
+            .addEventListener("click", function() {
+                store.dispatch({
+                    type: "like/increment"
+                });
+                render();
+            });
     </script>
 </body>
 
