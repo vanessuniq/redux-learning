@@ -1,46 +1,61 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Redux basic example</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
-    </head>
-    <body>
-        <button id="decrement">Dislike</button>
-        <span id="value">0</span> 💕
-        <button id="increment">Like</button>
-        <script>
-            // Define an initial state value for the app
-            const initialState = {
-                value: 0
-            };
-            // Create a "reducer" function that determines what the new state
-            // should be when something happens in the app
-            function likeReducer(state = initialState, action) {
-                // Reducers usually look at the type of action that happened
-                // to decide how to update the state
-                switch(action.type) {
-                    case "like/increment":
-                        return {...state, value: state.value + 1};
-                    case "like/decrement":
-                        if(state.value > 0) return {...state, value: state.value -1};
-                    default:
-                        // If the reducer doesn't care about this action type,
-                        // return the existing state unchanged
-                        return state;
-                }
-            };
 
-            // Create a new Redux store with the `createStore` method,
-            // and use the `likeReducer` for the update logic
-            const store = Redux.createStore(likeReducer);
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Redux basic example</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <script src="https://unpkg.com/redux@latest/dist/redux.min.js"></script>
+</head>
 
-           
+<body>
+    <button id="decrement">Dislike</button>
+    <span id="value">0</span> 💕
+    <button id="increment">Like</button>
+    <script>
+        // Define an initial state value for the app
+        const initialState = {
+            value: 0
+        };
+        // Create a "reducer" function that determines what the new state
+        // should be when something happens in the app
+        function likeReducer(state = initialState, action) {
+            // Reducers usually look at the type of action that happened
+            // to decide how to update the state
+            switch (action.type) {
+                case "like/increment":
+                    return {...state,
+                        value: state.value + 1
+                    };
+                case "like/decrement":
+                    if (state.value > 0) return {...state,
+                        value: state.value - 1
+                    };
+                default:
+                    // If the reducer doesn't care about this action type,
+                    // return the existing state unchanged
+                    return state;
+            }
+        };
 
-        </script>
-    </body>
+        // Create a new Redux store with the `createStore` method,
+        // and use the `likeReducer` for the update logic
+        const store = Redux.createStore(likeReducer);
+
+        // get the element from UI containg the value for the number of likes
+        const likesElement = document.getElementById("value");
+
+        // update the likes value whenever the state contained in the store changes
+        function render() {
+            const state = store.getState();
+            likesElement.textContent = state.value.toString();
+        };
+        // update the likes value with the current state
+        render();
+    </script>
+</body>
+
 </html>
