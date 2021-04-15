@@ -88,6 +88,14 @@
         function render() {
             const state = store.getState();
             likesElement.textContent = state.like.toString();
+            const {
+                hours,
+                mins,
+                secs
+            } = state.time;
+            hoursElement.textContent = hours.toString().length === 1 ? "0" + hours.toString() : hours.toString();
+            minsElement.textContent = mins.toString().length === 1 ? "0" + mins.toString() : mins.toString();
+            secsElement.textContent = secs.toString().length === 1 ? "0" + secs.toString() : secs.toString();
         };
         // update the likes value with the current state
         render();
