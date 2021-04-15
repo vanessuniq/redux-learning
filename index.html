@@ -25,27 +25,18 @@
     </p>
 
     <script>
-        // Define an initial state value for the app
-        const initialState = {
-            value: 0,
-            hours: new Date().getHours(),
-            mins: new Date().getMinutes(),
-            secs: new Date().getSeconds()
-        };
+        // Define an initial state value for the like feature
+        const initialLikeState = 0;
         // Create a "reducer" function that determines what the new state
         // should be when something happens in the app
-        function likeReducer(state = initialState, action) {
+        function likeReducer(state = initialLikeState, action) {
             // Reducers usually look at the type of action that happened
             // to decide how to update the state
             switch (action.type) {
                 case "like/increment":
-                    return {...state,
-                        value: state.value + 1
-                    };
+                    return state + 1
                 case "like/decrement":
-                    if (state.value > 0) return {...state,
-                        value: state.value - 1
-                    };
+                    if (state > 0) return state - 1;
 
                 default:
                     // If the reducer doesn't care about this action type,
@@ -53,9 +44,14 @@
                     return state;
             }
         };
-
+        // initial time state
+        const initialTimeState = {
+            hours: new Date().getHours(),
+            mins: new Date().getMinutes(),
+            secs: new Date().getSeconds()
+        };
         // time reducer
-        function timeReducer(state = initialState, action) {
+        function timeReducer(state = initialTimeState, action) {
             switch (action.type) {
                 case "time/checkHours":
                     if (state.hours !== action.payload) return {...state,
