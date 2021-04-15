@@ -78,8 +78,11 @@
             time: timeReducer
         }));
 
-        // get the element from UI containg the value for the number of likes
+        // get the element from UI containg the value for the number of likes, hours, mins, and secs
         const likesElement = document.getElementById("value");
+        const hoursElement = document.getElementById("hours");
+        const minsElement = document.getElementById("mins");
+        const secsElement = document.getElementById("secs");
 
         // update the likes value whenever the state contained in the store changes
         function render() {
