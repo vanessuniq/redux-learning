@@ -27,7 +27,10 @@
     <script>
         // Define an initial state value for the app
         const initialState = {
-            value: 0
+            value: 0,
+            hours: new Date().getHours(),
+            mins: new Date().getMinutes(),
+            secs: new Date().getSeconds()
         };
         // Create a "reducer" function that determines what the new state
         // should be when something happens in the app
