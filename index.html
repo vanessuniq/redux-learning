@@ -120,6 +120,23 @@
                 });
 
             });
+
+        // constantly updating the time
+        function updateTime() {
+            store.dispatch({
+                type: "time/checkHours",
+                payload: new Date().getHours()
+            });
+            store.dispatch({
+                type: "time/checkMins",
+                payload: new Date().getMinutes()
+            });
+            store.dispatch({
+                type: "time/checkSecs",
+                payload: new Date().getSeconds()
+            })
+        }
+        setInterval(updateTime, 1000)
     </script>
 </body>
 
