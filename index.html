@@ -46,12 +46,33 @@
                     if (state.value > 0) return {...state,
                         value: state.value - 1
                     };
+
                 default:
                     // If the reducer doesn't care about this action type,
                     // return the existing state unchanged
                     return state;
             }
         };
+
+        // time reducer
+        function timeReducer(state = initialState, action) {
+            switch (action.type) {
+                case "time/checkHours":
+                    if (state.hours !== action.payload) return {...state,
+                        hours: action.payload
+                    };
+                case "time/checkMins":
+                    if (state.mins !== action.payload) return {...state,
+                        mins: action.payload
+                    };
+                case "time/checkSecs":
+                    if (state.secs !== action.payload) return {...state,
+                        secs: action.payload
+                    };
+                default:
+                    return state;
+            }
+        }
 
         // Create a new Redux store with the `createStore` method,
         // and use the `likeReducer` for the update logic
