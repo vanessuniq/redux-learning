@@ -71,8 +71,12 @@
         }
 
         // Create a new Redux store with the `createStore` method,
-        // and use the `likeReducer` for the update logic
-        const store = Redux.createStore(likeReducer);
+        // and use the `likeReducer` and `timeReducer` for the update logic
+        // combine both reducers using the `combineReducers` method
+        const store = Redux.createStore(Redux.combineReducers({
+            like: likeReducer,
+            time: timeReducer
+        }));
 
         // get the element from UI containg the value for the number of likes
         const likesElement = document.getElementById("value");
@@ -80,7 +84,7 @@
         // update the likes value whenever the state contained in the store changes
         function render() {
             const state = store.getState();
-            likesElement.textContent = state.value.toString();
+            likesElement.textContent = state.like.toString();
         };
         // update the likes value with the current state
         render();
